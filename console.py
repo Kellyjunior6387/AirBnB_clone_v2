@@ -134,10 +134,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         except NameError:
             print("** class doesn't exist **")
-        params['updated_at'] = datetime.now()
+     
         instance = HBNBCommand.classes[class_name](**params)
         instance.save()
         print(instance.id)
+
 
     def help_create(self):
         """ Help information for the create method """
