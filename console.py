@@ -126,6 +126,7 @@ class HBNBCommand(cmd.Cmd):
             params = {}
             for arg in args_list[1:]:
                 key,value = arg.split('=')
+        
                 value = eval(value)
                 if type(value) is str:
                     value = value[1:-1].replace("_", " ")
