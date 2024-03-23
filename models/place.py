@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, ForeignKey, Integer, Float
+from sqlalchemy import Column, String, ForeignKey, Integer, Float,Table
 from sqlalchemy.orm import relationship
 from os import getenv
 import models
@@ -34,7 +34,7 @@ class Place(BaseModel, Base):
     if getenv("HBNB_TYPE_STORAGE") == "db":
         reviews = relationship("Review", cascade='all, delete, delete-orphan',
                                backref="place")
-         amenities = relationship("Amenity", secondary=place_amenity,
+        amenities = relationship("Amenity", secondary=place_amenity,
                                  viewonly=False,
                                  back_populates="place_amenities")
     else:
@@ -50,7 +50,7 @@ class Place(BaseModel, Base):
                 if (classname == "Review"):
                     my_list.append(classes[clazz])
             for item in my_list:
-                if item.id = self.id:
+                if item.id == self.id:
                     result.append(item)
             return (result)
         

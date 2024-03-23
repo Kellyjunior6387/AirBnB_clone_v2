@@ -38,7 +38,7 @@ class BaseModel:
                     self.created_at = datetime.now()
                 if "updated_at" not in kwargs:
                     self.updated_at = datetime.now()
-            else:
+        else:
                 self.id = str(uuid.uuid4())
                 self.created_at = self.updated_at = datetime.now()
 
@@ -61,13 +61,13 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
     
-    def to_dict():
+    def to_dict(self):
         """creates dictionary of the class  and returns
         Return:
             returns a dictionary of all the key values in __dict__
         """
-        my_dict = dict(self.__dict)
-        my_dict["__class__"] = str(type(self).__name)
+        my_dict = dict(self.__dict__)
+        my_dict["__class__"] = str(type(self).__name__)
         my_dict["updated_at"] = self.updated_at.isoformat()
         my_dict["created_at"] = self.created_at.isoformat()
         if '_sa_instance_state' in my_dict.keys():
