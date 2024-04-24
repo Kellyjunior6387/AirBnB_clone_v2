@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
         
                 value = eval(value)
                 if type(value) is str:
-                    value = value[1:-1].replace("_", " ")
+                    value = value.replace("_", " ")
                 params[key] = value
         except SyntaxError:
             print("** class name missing **")
@@ -221,11 +221,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all(HBNBCommand.classes[args]).items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
 
         print(print_list)
