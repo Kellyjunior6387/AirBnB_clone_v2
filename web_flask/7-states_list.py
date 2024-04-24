@@ -1,13 +1,17 @@
 #!/usr/bin/python3
+"""Start a flask application"""
+
+
 from flask import Flask, render_template
 from models import storage
-
 app = Flask(__name__)
+
 
 @app.teardown_appcontext
 def teardown_session(exception=None):
     """Close the current sqlalchemy session"""
     storage.close()
+
 
 @app.route("/states_list", strict_slashes=False)
 def states_list():
